@@ -9,16 +9,21 @@ import com.raxrot.courseservice.mapper.CourseMapper;
 import com.raxrot.courseservice.model.Course;
 import com.raxrot.courseservice.repository.CourseRepository;
 import com.raxrot.courseservice.service.CourseService;
+import com.raxrot.courseservice.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
+    private final ImageService imageService;
+
 
     @Override
     public CourseResponseDTO createCourse(CourseRequestDTO courseRequestDTO, UserDTO userDTO) {
@@ -78,13 +83,46 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourse(Long id, UserDTO userDTO) {
-        Course course=courseRepository.findById(id)
-                .orElseThrow(()->new ApiException("Course not found", HttpStatus.NOT_FOUND));
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new ApiException("Course not found", HttpStatus.NOT_FOUND));
 
-        if (!course.getAuthorId().equals(userDTO.getId())){
+        if (!course.getAuthorId().equals(userDTO.getId())) {
             throw new ApiException("You are not authorized to delete this course", HttpStatus.UNAUTHORIZED);
         }
 
+        if (course.getImagePublicId() != null) {
+            imageService.deleteImage(course.getImagePublicId());
+        }
+
         courseRepository.delete(course);
+    }
+
+    @Override
+    public CourseResponseDTO uploadCourseImage(Long id, MultipartFile image, UserDTO userDTO) {
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new ApiException("Course not found", HttpStatus.NOT_FOUND));
+
+        if (!course.getAuthorId().equals(userDTO.getId())) {
+            throw new ApiException("You are not authorized to update this course", HttpStatus.UNAUTHORIZED);
+        }
+
+        if (course.getImagePublicId() != null) {
+            imageService.deleteImage(course.getImagePublicId());
+            course.setImagePublicId(null);
+            course.setImageUrl(null);
+        }
+
+
+        Map uploadResult = imageService.uploadImage(image);
+
+        String newImageUrl = (String) uploadResult.get("secure_url");
+        String newPublicId = (String) uploadResult.get("public_id");
+
+        course.setImageUrl(newImageUrl);
+        course.setImagePublicId(newPublicId);
+
+        Course savedCourse = courseRepository.save(course);
+
+        return CourseMapper.toCourseResponseDTO(savedCourse);
     }
 }

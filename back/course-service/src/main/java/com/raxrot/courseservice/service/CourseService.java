@@ -4,6 +4,7 @@ import com.raxrot.courseservice.client.UserDTO;
 import com.raxrot.courseservice.dto.CourseRequestDTO;
 import com.raxrot.courseservice.dto.CourseResponseDTO;
 import com.raxrot.courseservice.dto.CourseUpdateDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CourseService {
     List<CourseResponseDTO> searchCourses(String query);
     CourseResponseDTO updateCourse(Long id, CourseUpdateDTO courseUpdateDTO, UserDTO userDTO);
     void deleteCourse(Long id, UserDTO userDTO);
+    CourseResponseDTO uploadCourseImage(Long id, MultipartFile image, UserDTO userDTO);
+
 }

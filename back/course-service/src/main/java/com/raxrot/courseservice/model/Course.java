@@ -22,7 +22,7 @@ public class Course {
     private String description;
 
     private String imageUrl;
-    private String imagePublicUrl;
+    private String imagePublicId;
 
     private Long authorId;
 }

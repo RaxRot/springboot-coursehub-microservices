@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -68,4 +69,17 @@ public class CourseController {
         courseService.deleteCourse(id, userDTO);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<CourseResponseDTO> uploadCourseImage(
+            @PathVariable Long id,
+            @RequestParam("image") MultipartFile image
+    ) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(1L);
+
+        CourseResponseDTO updated = courseService.uploadCourseImage(id, image, userDTO);
+        return ResponseEntity.ok(updated);
+    }
+
 }
