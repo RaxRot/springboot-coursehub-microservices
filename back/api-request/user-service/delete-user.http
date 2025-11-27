@@ -1,0 +1,4 @@
+### Delete user
+DELETE http://localhost:5001/api/users/1
+
+###

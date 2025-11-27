@@ -1,0 +1,3 @@
+### Get user by Id
+GET http://localhost:5001/api/users/1
+###
