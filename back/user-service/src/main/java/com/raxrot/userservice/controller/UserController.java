@@ -1,4 +1,4 @@
-package com.raxrot.userservice;
+package com.raxrot.userservice.controller;
 
 import com.raxrot.userservice.dto.UserRequestDTO;
 import com.raxrot.userservice.dto.UserResponseDTO;
