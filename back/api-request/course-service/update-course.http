@@ -1,0 +1,8 @@
+### Update course
+PUT http://localhost:5002/api/courses/1
+Content-Type: application/json
+
+{
+  "title": "Java PRO Course",
+  "description": "Updated description"
+}

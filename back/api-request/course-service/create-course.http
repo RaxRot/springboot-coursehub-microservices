@@ -1,0 +1,8 @@
+### Create new course
+POST http://localhost:5002/api/courses
+Content-Type: application/json
+
+{
+  "title": "New Java Course",
+  "description": "Java course from Dasha <3"
+}

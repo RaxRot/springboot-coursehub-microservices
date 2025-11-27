@@ -1,0 +1,10 @@
+### Upload course image
+POST http://localhost:5002/api/courses/1/image
+Content-Type: multipart/form-data; boundary=Bound123
+
+--Bound123
+Content-Disposition: form-data; name="image"; filename="java.png"
+Content-Type: image/png
+
+< ./java.png
+--Bound123--

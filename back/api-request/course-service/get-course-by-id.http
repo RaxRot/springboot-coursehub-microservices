@@ -1,0 +1,2 @@
+### Get course by ID
+GET http://localhost:5002/api/courses/1
