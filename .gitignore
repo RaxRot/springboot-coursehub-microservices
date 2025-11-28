@@ -16,3 +16,12 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# React / Node
+ui/**/node_modules/
+ui/**/build/
+ui/**/dist/
+ui/**/.vite/
+
+back/.env
+
