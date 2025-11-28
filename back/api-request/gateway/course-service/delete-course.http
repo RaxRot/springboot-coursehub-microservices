@@ -1,0 +1,2 @@
+### Delete course
+DELETE http://localhost:8080/api/courses/2

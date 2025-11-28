@@ -1,0 +1,9 @@
+### Update User
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+    "username": "test2",
+    "email": "test2@gmail.com"
+}
+###

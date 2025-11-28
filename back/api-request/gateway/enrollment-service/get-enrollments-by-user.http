@@ -1,0 +1,2 @@
+### get-enrollments-by-user
+GET http://localhost:8080/api/enrollments/user/1

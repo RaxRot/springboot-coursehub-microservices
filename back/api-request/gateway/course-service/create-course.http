@@ -1,0 +1,8 @@
+### Create new course
+POST http://localhost:8080/api/courses
+Content-Type: application/json
+
+{
+  "title": "New Java Course",
+  "description": "Java course from Vlad"
+}
