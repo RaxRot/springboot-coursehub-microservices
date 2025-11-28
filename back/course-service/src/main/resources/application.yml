@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: course-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/coursedb_ch?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 19649072Sever
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 5002
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
