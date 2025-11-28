@@ -1,0 +1,2 @@
+### get-enrollments-by-course
+GET http://localhost:5003/api/enrollments/course/1

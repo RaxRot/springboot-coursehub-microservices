@@ -1,0 +1,8 @@
+### create-enrollment
+POST http://localhost:5003/api/enrollments
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "courseId": 1
+}
